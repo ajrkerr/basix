@@ -1,5 +1,0 @@
-%article
-  %h2= "#{resource_name} Information"
-
-  - readable_attributes.each do |attribute|
-    = attr_tag attribute.titleize, resource.send(attribute)

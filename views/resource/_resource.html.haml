@@ -1,8 +1,0 @@
-= semantic_form_for resource do |f|
-  = f.inputs :name => resource_name(resource) do
-    - readable_attributes(resource).each do |attribute|
-      = f.input attribute.to_sym
-
-  .btn-group
-    = link_to "Back", :back, :class => "btn btn-info"
-    = f.submit :class => "btn btn-success"

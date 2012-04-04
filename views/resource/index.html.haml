@@ -1,7 +1,0 @@
-%article
-  %h2= resource_class.name.titleize
-  
-  = render 'table', :collection => collection
-  
-  = paginate collection
-  = link_to "New #{resource_class.name.titleize}", new_resource_url, :class => "btn btn-large btn-success new" if can? :create, resource_class
