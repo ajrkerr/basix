@@ -1,0 +1,21 @@
+= semantic_form_for @user do |f| 
+  
+  %section.row
+    = f.inputs :name => "Edit User", :class => 'span6' do
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :email
+
+    = f.inputs :name => "Change Password", :class => 'span6' do
+      %p (leave blank if you don't want to change it)
+      = f.input :current_password
+      = f.input :password, :label => "New Password", :required => false
+      = f.input :password_confirmation, :label => "Confirm Password"
+
+  .btn-group
+    = link_to "Back", :back, :class => "btn btn-info"
+    = f.submit "Update", :class => 'btn btn-success'
+
+.btn-group.pull-right
+  = button_to "Disable Account", disable_user_path(@user), :confirm => "Are you sure you want to disable this account?", :class => "btn btn-danger" if @user.enabled? and can? :enable, @user
+  = button_to "Enable Account", enable_user_path(@user), :confirm => "Are you sure you want to enable this account?", :class => "btn btn-danger" if @user.disabled? and can? :disable, @user
