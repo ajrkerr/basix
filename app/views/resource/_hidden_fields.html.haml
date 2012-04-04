@@ -1,0 +1,10 @@
+- association ||= false
+
+- if association
+  = form.fields_for association do |for_form|
+    - writable_attributes(for_form.object).each do |attribute|
+      = for_form.input attribute, :as => :hidden
+
+- else
+  - writable_attributes(form.object).each do |attribute|
+    = form.input attribute, :as => :hidden

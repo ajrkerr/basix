@@ -1,0 +1,67 @@
+@import "bourbon"
+
+$error-color: #C43C35
+
+@mixin silk-icon($icon)
+  width: 16px
+  height: 16px
+  line-height: 16px
+  background: url("/assets/icons/#{$icon}.png") no-repeat
+  vertical-align: middle
+  display: block
+
+@mixin transparent-hover($opacity: .65)
+  opacity: $opacity
+
+  &:hover
+    cursor: pointer
+    opacity: 1
+
+@mixin box
+  $padding-size: 10px
+  $border-size: 1px
+
+  // background: url('/assets/dark_fabric.png')
+  @include box-shadow(0 0 1em #BBB inset)
+  @include border-radius(.25em)
+  background: white
+  margin-top: 1em
+  margin-bottom: 1em
+  padding: $padding-size
+  border: $border-size solid #BBB
+
+  .with-padding
+    padding-left: $padding-size
+
+  *:not([class^="span"]) .row, &>.row
+    margin-left: -$padding-size - $border-size - 20px //Adjust for padding, border and gutter
+    margin-right: -$padding-size - $border-size //Padding and border
+    
+
+@mixin ribbon($ribbon_name)
+  @include box-sizing(content-box)
+  @include box-shadow(0 0 1em #888)
+  position: relative
+  margin: 0
+  margin-left: -11px
+  padding: 11px
+  width: 100%
+
+  &:before, &:after
+    content: " "
+    display: block
+    width: 10px
+    height: 10px
+    position: absolute
+    margin-bottom: -10px
+    z-index: 1000
+
+  &:before
+    background: url("/assets/ribbons/" + $ribbon_name + "-left.png")
+    top: -10px
+    left: 0
+
+  &:after
+    background: url("/assets/ribbons/" + $ribbon_name + "-right.png")
+    right: 0
+    bottom: 0px

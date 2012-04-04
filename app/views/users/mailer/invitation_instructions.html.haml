@@ -1,0 +1,15 @@
+%p
+  = @resource.invited_by.try(:name) || 'Someone'
+  has added you to the Plan and Claims Management System for zucora Inc.  This system is our new web service for retailers and dealers to register service plans online.  Please follow the link below and the instructions provided.
+  
+%p= link_to 'Create Account', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+
+%p
+  If you believe that you have recieved this in error or do not wish to sign up for an account please ignore this email.
+  Your account will not be created until you access the link above and set your password.
+
+%p 
+  For more information on Zucora visit us online at:
+  %a{ href: "http://www.zucora.com/", target: '_new' } http://www.zucora.com/
+
+= render "application_mailer/footer"

@@ -1,0 +1,49 @@
+%section.row
+  %article.user_info.span6
+    %h2 User Information
+    = attr_tag "Name", @user.name
+    = attr_tag "Email", @user.email
+    = attr_tag "Status", @user.active ? "Active": "Disabled"
+
+  %article.stats.span6
+    %h2 Stats
+    = attr_tag "Plans Sold", Plan.sold_by_user(@user).count
+    = attr_tag "Orders Sold", Order.sold_by_user(@user).count
+
+%section.row.roles
+  - if @user.has_role? :sales_agent
+    %article.sales_agent.span6
+      %h2 Sales Agent For
+
+      - @user.roles.sales_agent.each do |role|
+        %li= link_to role.resource.name, role.resource if role.resource
+
+
+  - if @user.has_role? :retail_manager
+    %article.retail_manager.span6
+      %h2 Manager For
+
+      - @user.roles.retail_manager.each do |role|
+        %li= link_to role.resource.name, role.resource if role.resource
+
+
+- admin_only do
+
+  %article.roles
+    %h2 Roles
+
+    %table.table.table-striped.table-condensed
+      %thead
+        %th Role
+        %th Resource
+        %th Resource Type
+
+      %tbody
+        - @user.roles.master.each do |role|
+          %tr
+            %td= role.name
+            %td= link_to role.resource.name, role.resource if role.resource
+            %td= role.resource_type
+
+.btn-group
+  = link_to "Edit User", edit_user_path(@user), :class => "btn edit" if can? :edit, @user

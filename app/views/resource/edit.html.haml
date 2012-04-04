@@ -1,0 +1,4 @@
+- begin
+  = render resource 
+- rescue ActionView::MissingTemplate
+  = render :partial => 'resource', :locals => { :resource => resource }

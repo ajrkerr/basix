@@ -1,0 +1,11 @@
+%section.row{ :class => [resource_name.parameterize, 'information'] }
+  %article.span12
+    = render "info", { resource_name.parameterize("_").to_sym => resource, :resource => resource }
+
+.btn-group
+  - if can? :edit, resource
+    = link_to edit_resource_path, :class => "btn btn-warning edit" do
+      %i.icon-pencil.icon-white
+      %span= "Edit #{resource_name}"
+
+  = link_to "Create #{resource_name}", new_resource_path, :class => "btn btn-success new" if can? :create, resource
