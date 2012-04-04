@@ -1,0 +1,12 @@
+%table.table.table-striped.table-condensed
+  %thead
+    %tr
+      %th Email
+      %th Name
+      %th Status
+
+  - collection.each do |user|
+    %tr
+      %td= link_to user.email, user
+      %td= user.name
+      %td= user.status

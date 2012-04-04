@@ -1,0 +1,19 @@
+%article
+  %h2 Sign in
+
+  %section.row
+    %div.span6.with-padding
+      = semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f|
+        = f.input :email, :required => true
+        = f.input :password
+
+        - if devise_mapping.rememberable? 
+          %li.input.control-group
+            = f.label :remember_me, :class => "control-label"
+            = f.check_box :remember_me
+        
+        .btn-group    
+          = f.submit "Sign in", :class => 'btn'
+          = render :partial => "users/shared/links"
+
+    %div#chrome_prompt.span5
